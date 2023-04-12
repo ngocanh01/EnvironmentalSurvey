@@ -1,0 +1,49 @@
+
+<section class="pb-11 pt-7 bg-600">
+  <div class="container">
+    <div [formGroup]="myForm">
+      <h6 class="font-sans-serif text-primary fw-bold">Survey details</h6>
+      <h3 class="mb-3" >{{myForm.value.surveyName}}</h3>
+    </div>
+     <div class="row">
+       <form class="px-4 py-4 bg-white" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+         <div formArrayName="questions">
+           <div *ngFor="let question of formQuestionData.controls; let i=index">
+             <div [formGroupName]="i">
+               <h5>{{i + 1 + ". "}} {{ question.value.questionName }} &nbsp; <span *ngIf="question.value.isMandatory == true" style="color:red">*</span></h5> 
+               <div formArrayName="options">
+                 <div *ngFor="let option of formOptionData(question).controls; let j=index">
+                   <!-- checkbox -->
+                   <div *ngIf="question.value.questionTypeId == 1" class="mb-2 form-check">
+                     <label [for]="'option_' + i + '_' + j">
+                       <input class="form-check-input" type="checkbox" required name="{{question.value.questionId}}" [id]="'option_' + i + '_' + j" [formArrayName]="j" [value]="'option_' + i + '_' + j" 
+                       (change)="onOptionChange($event, i, j)">
+                       {{ option.value.optionName }}
+                     </label>
+                   </div>
+                   <!-- radio -->
+                   <div *ngIf="question.value.questionTypeId == 2"   class="mb-2 form-check">
+                     <label [for]="'option_' + i + '_' + j">
+                       <input class="form-check-input" type="radio" name="{{question.value.questionId}}" [id]="'option_' + i + '_' + j" [formArrayName]="j" [value]="'option_' + i + '_' + j" 
+                       (change)="onOptionChange($event, i, j)">
+                       {{ option.value.optionName }}
+                     </label>
+                   </div>
+                   <!-- text -->
+                   <div *ngIf="question.value.questionTypeId == 3"   class="w-75 mb-2 px-0 form-check">
+                     <input [(ngModel)]="text" [ngModelOptions]="{standalone: true}" (ngModelChange)="onTextChange($event, i, j)" type="text" name="radio" [id]="'option_' + i + '_' + j" [formArrayName]="j">
+                   </div>                  
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="py-2 mt-3 text-center">
+            <button type="submit" class="btn btn-primary"  [disabled]="myForm.invalid">Submit</button>
+           <input type="hidden" >
+          </div>
+       </form>
+     </div>
+   </div>
+</section>
+

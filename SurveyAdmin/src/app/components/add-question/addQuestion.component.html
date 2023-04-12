@@ -1,0 +1,143 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <!-- jquery validation -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Add Question</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form
+            id="quickForm"
+            [formGroup]="addQuestionForm"
+            (ngSubmit)="save()"
+          >
+            <div class="card-body">
+              <div class="form-group">
+                <label for="questionText">Question</label>
+                <input
+                  type="text"
+                  name="questionText"
+                  id="questionText"
+                  class="form-control"
+                  formControlName="questionText"
+                />
+              </div>
+              <ng-container *ngIf="addQuestionForm.get('questionText').touched">
+                <ng-container
+                  *ngIf="addQuestionForm.hasError('required', ['questionText'])"
+                >
+                  <span class="text-red">Please fill this filed</span>
+                </ng-container>
+              </ng-container>
+              <div class="form-group">
+                <label for="type">Survey</label>
+                <select class="form-control" formControlName="surveyId">
+                  <option
+                    *ngFor="let survey of surveys"
+                    value="{{ survey.id }}"
+                  >
+                    {{ survey.title }}
+                  </option>
+                </select>
+              </div>
+              <ng-container *ngIf="addQuestionForm.get('surveyId').touched">
+                <ng-container
+                  *ngIf="addQuestionForm.hasError('required', ['surveyId'])"
+                >
+                  <span class="text-red">Please fill this filed</span>
+                </ng-container>
+              </ng-container>
+              <div class="form-group">
+                <label for="type">Type</label>
+                <select
+                  aria-label="label for the select"
+                  name="type"
+                  class="form-control"
+                  formControlName="questiontypeId"
+                >
+                  <option
+                    *ngFor="let questionType of questionTypes"
+                    value="{{ questionType.id }}"
+                  >
+                    {{ questionType.name }}
+                  </option>
+                </select>
+              </div>
+              <ng-container
+                *ngIf="addQuestionForm.get('questiontypeId').touched"
+              >
+                <ng-container
+                  *ngIf="
+                    addQuestionForm.hasError('required', ['questiontypeId'])
+                  "
+                >
+                  <span class="text-red">Please fill this filed</span>
+                </ng-container>
+              </ng-container>
+              <!-- <label for="type">Option</label>
+              <div
+                class="p-3 mb-3 border d-flex flex-column align-items-center justify-content-center"
+              >
+                <div
+                  class="form-group w-100 option-container d-flex flex-column align-items-center justify-content-center"
+                ></div> -->
+              <!-- <div *ngIf="selected !== ''">
+                  <button class="btn btn-primary" (click)="add(selected)">
+                    Add
+                  </button>
+                </div> -->
+              <!-- <div>
+                  <ng-template [ngIf]="selected !== ''"
+                    ><button class="btn btn-primary" (click)="add(selected)">
+                      Add
+                    </button>
+                    <ng-template [ngIf]="optionItem > 1"
+                      ><button
+                        (click)="delete()"
+                        class="ml-3 btn btn-danger"
+                        id="deleteBtn"
+                      >
+                        <i class="fas fa-minus"></i></button
+                    ></ng-template>
+                  </ng-template>
+                </div> -->
+              <!-- </div> -->
+              <!-- <div class="form-group">
+                <div class="mr-2 icheck-primary d-inline">
+                  <input
+                    type="checkbox"
+                    id="checkboxPrimary1"
+                    name="r1"
+                    checked=""
+                  />
+                  <label for="checkboxPrimary1">Mandatory</label>
+                </div>
+              </div> -->
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="addQuestionForm.invalid"
+              >
+                Create
+              </button>
+            </div>
+          </form>
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+      <!-- right column -->
+      <div class="col-md-6"></div>
+      <!--/.col (right) -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>

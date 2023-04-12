@@ -1,0 +1,38 @@
+<section class="pb-11 pt-7 bg-600">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h6 class="font-sans-serif text-primary fw-bold">Survey category</h6>
+        <h1 class="mb-6">Do you "Think Earth" each day?</h1>
+      </div>
+    </div>
+  </div>
+  <!-- end of .container-->
+</section>
+
+<section class="pb-0" style="margin-top: -17rem">
+  <div class="container">
+    <div class="row">
+      <div class="mb-4 col-md-4" *ngFor="let item of surveys">
+        <div class="card h-100">
+          <img
+            class="card-img-top w-100"
+            src="assets/img/gallery/design.png"
+            alt="courses"
+          />
+          <div class="card-body">
+            <h5 class="font-sans-serif fw-bold fs-md-0 fs-lg-1">
+              {{ item.title }}
+            </h5>
+            <a
+              class="text-muted fs--1 stretched-link text-decoration-none"
+              [routerLink]="['/survey/survey-details', { id: item.id }]"
+              >Water</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end of .container-->
+</section>

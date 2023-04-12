@@ -1,0 +1,151 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <!-- jquery validation -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Add Survey</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <ng-container *ngIf="editSurveyForm != null">
+            <form
+              id="quickForm"
+              [formGroup]="editSurveyForm"
+              (ngSubmit)="save()"
+            >
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="title">Title</label>
+                  <input
+                    type="text"
+                    name="title"
+                    class="form-control"
+                    id="title"
+                    placeholder="Enter title"
+                    formControlName="title"
+                  />
+                </div>
+                <ng-container *ngIf="editSurveyForm.get('title').touched">
+                  <ng-container
+                    *ngIf="editSurveyForm.hasError('required', ['title'])"
+                  >
+                    <span class="text-red">Please fill this filed</span>
+                  </ng-container>
+                </ng-container>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea
+                    class="form-control"
+                    rows="5"
+                    placeholder="Enter ..."
+                    formControlName="description"
+                    style="resize: none"
+                  ></textarea>
+                </div>
+                <ng-container *ngIf="editSurveyForm.get('description').touched">
+                  <ng-container
+                    *ngIf="editSurveyForm.hasError('required', ['description'])"
+                  >
+                    <span class="text-red">Please fill this filed</span>
+                  </ng-container>
+                </ng-container>
+                <div class="form-group">
+                  <label for="type">Type</label>
+                  <select
+                    formControlName="type"
+                    name="type"
+                    id="type"
+                    class="form-control"
+                  >
+                    <option value="auto">Auto</option>
+                    <option value="manual">Manual</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Status</label>
+                  <div class="custom-control custom-checkbox">
+                    <input
+                      class="custom-control-input"
+                      type="checkbox"
+                      id="customCheckbox2"
+                      name="status"
+                      formControlName="status"
+                    />
+                    <label for="customCheckbox2" class="custom-control-label"
+                      >Active</label
+                    >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="startDate">Start Date</label>
+                  <input
+                    type="date"
+                    name="startdate"
+                    formControlName="startdate"
+                    class="form-control"
+                  />
+                </div>
+
+                <!-- <ng-container *ngIf="!onChangeStartDate()">
+                  <span class="text-red"
+                    >Start Date must equal or larger than today</span
+                  >
+                </ng-container> -->
+                <div class="form-group">
+                  <label for="endDate">End Date</label>
+                  <input
+                    type="date"
+                    name="enddate"
+                    formControlName="enddate"
+                    class="form-control"
+                  />
+                </div>
+                <ng-container
+                  *ngIf="editSurveyForm.get('startdate').errors?.['dateLessThan']"
+                >
+                  <span class="text-red">
+                    End date Should be larger than Start Date.</span
+                  >
+                </ng-container>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Category</label>
+                  <select
+                    class="form-control"
+                    formControlName="surveyCategoryId"
+                  >
+                    <option
+                      *ngFor="let category of categories"
+                      value="{{ category.id }}"
+                    >
+                      {{ category.name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  [disabled]="editSurveyForm.invalid"
+                >
+                  Update
+                </button>
+              </div>
+            </form>
+          </ng-container>
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+      <!-- right column -->
+      <div class="col-md-6"></div>
+      <!--/.col (right) -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>

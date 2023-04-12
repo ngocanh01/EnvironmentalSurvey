@@ -1,0 +1,73 @@
+<div class="card">
+  <div class="p-3 d-flex align-items-center justify-content-between">
+    <div class="card-header">
+      <h3 class="card-title">Question</h3>
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary"
+      [routerLink]="['/add-question']"
+    >
+      Add
+    </button>
+  </div>
+  <!-- /.card-header -->
+
+  <div class="col-12">
+    <div class="card">
+      <div class="p-0 card-body table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th style="width: 20px">#</th>
+              <th>Question</th>
+              <th>Survey</th>
+              <th>Type</th>
+              <th>Options</th>
+              <th style="min-width: 150px; width: 200px">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngIf="questions != null">
+              <tr *ngFor="let question of questions; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ question.questionText }}</td>
+                <td>{{ question.surveyName }}</td>
+                <td>{{ question.questiontypeName }}</td>
+                <td>
+                  <ng-container *ngIf="question.questiontypeName != 'text'">
+                    <ul style="list-style-type: decimal">
+                      <li *ngFor="let k of objectKeys(question.questionOption)">
+                        {{ question.questionOption[k].option }}
+                      </li>
+                    </ul>
+                  </ng-container>
+                </td>
+                <td>
+                  <div class="d-flex align-items-center justify-content-around">
+                    <button
+                      type="button"
+                      class="btn btn-success"
+                      [routerLink]="['/update-question', { id: question.id }]"
+                    >
+                      Update
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      (click)="delete(question.id)"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- /.card-body -->
+</div>
+<!-- /.card -->

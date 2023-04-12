@@ -1,0 +1,69 @@
+<div class="card">
+  <div class="p-3 d-flex align-items-center justify-content-between">
+    <div class="card-header">
+      <h3 class="card-title">Survey</h3>
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary"
+      [routerLink]="['/add-survey']"
+    >
+      Add
+    </button>
+  </div>
+  <!-- /.card-header -->
+
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body table-responsive p-0">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th style="width: 20px">#</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Status</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Category</th>
+              <th style="width: 200px">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngIf="surveys != null">
+              <tr *ngFor="let survey of surveys; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ survey.title }}</td>
+                <td>{{ survey.description }}</td>
+                <td>{{ survey.type }}</td>
+                <td>{{ survey.status }}</td>
+                <td>{{ survey.startdate }}</td>
+                <td>{{ survey.enddate }}</td>
+                <td>{{ survey.surveyCategoryName }}</td>
+                <td class="d-flex align-items-center justify-content-around">
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    [routerLink]="['/update-survey', { id: survey.id }]"
+                  >
+                    Update
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="delete(survey.id)"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- /.card-body -->
+</div>
+<!-- /.card -->

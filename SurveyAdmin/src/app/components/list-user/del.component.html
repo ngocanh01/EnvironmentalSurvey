@@ -1,0 +1,142 @@
+<div class="card">
+    <div class="p-3 d-flex align-items-center justify-content-between">
+      <div class="card-header">
+        <h3 class="card-title">User</h3>
+      </div>
+      <button type="button" class="btn btn-primary" [routerLink]="['/add-user']">
+        Add
+      </button>
+    </div>
+    <!-- /.card-header -->
+  
+    <div class="card">
+      <div class="card-body">
+        <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+          <div class="row"></div>
+          <div class="row">
+            <div class="col-sm-12">
+              <table
+                id="example1"
+                class="table table-bordered table-striped dataTable dtr-inline"
+                aria-describedby="example1_info"
+              >
+                <thead>
+                  <tr>
+                    <th
+                      class="sorting sorting_asc"
+                      tabindex="0"
+                      aria-controls="example1"
+                      rowspan="1"
+                      colspan="1"
+                      aria-sort="ascending"
+                      aria-label="Rendering engine: activate to sort column descending"
+                      style="width: 20px"
+                    >
+                      #
+                    </th>
+                    <th
+                      class="sorting"
+                      tabindex="0"
+                      aria-controls="example1"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Browser: activate to sort column ascending"
+                    >
+                      Name
+                    </th>
+                    <th
+                      class="sorting"
+                      tabindex="0"
+                      aria-controls="example1"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Browser: activate to sort column ascending"
+                    >
+                      Email
+                    </th>
+                    <th
+                      class="sorting"
+                      tabindex="0"
+                      aria-controls="example1"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Browser: activate to sort column ascending"
+                    >
+                      Username
+                    </th>
+                    <th
+                      class="sorting"
+                      tabindex="0"
+                      aria-controls="example1"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Browser: activate to sort column ascending"
+                    >
+                      Password
+                    </th>
+                    <th
+                      class="sorting"
+                      tabindex="0"
+                      aria-controls="example1"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Browser: activate to sort column ascending"
+                    >
+                      Status
+                    </th>
+                    <th
+                      class="sorting"
+                      tabindex="0"
+                      aria-controls="example1"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Platform(s): activate to sort column ascending"
+                      style="width: 150px"
+                    >
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let u of users">
+                    <td>{{u.id}}</td>
+                    <td>{{u.name}}</td>
+                    <td>{{u.email}}</td>
+                    <td>{{u.username}}</td>
+                    <td>{{u.password}}</td>
+                    <td>{{u.status}}</td>
+                    <td class="d-flex align-items-center justify-content-around">
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        [routerLink]="['/update-user',{id:u.id}]"
+                      >
+                        Update
+                      </button>
+                      <button 
+                      type="button" 
+                      class="btn btn-danger"
+                      [routerLink]="['/delete-user',{id:u.id}]"
+                      >Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.card-body -->
+    <div class="clearfix card-footer">
+      <ul class="float-right m-0 pagination pagination-sm">
+        <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /.card -->
+  

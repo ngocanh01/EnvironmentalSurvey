@@ -1,0 +1,58 @@
+<div class="card">
+  <div class="p-3 d-flex align-items-center justify-content-between">
+    <div class="card-header">
+      <h3 class="card-title">Question Type</h3>
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary"
+      [routerLink]="['/add-question-type']"
+    >
+      Add
+    </button>
+  </div>
+  <div class="col-12">
+    <div class="card">
+      <div class="p-0 card-body table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th style="width: 20px">#</th>
+              <th>Name</th>
+              <th style="width: 200px">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngIf="questionTypes != null">
+              <tr *ngFor="let questionType of questionTypes; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ questionType.name }}</td>
+                <td class="d-flex align-items-center justify-content-around">
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    [routerLink]="[
+                      '/update-question-type',
+                      { id: questionType.id }
+                    ]"
+                  >
+                    Update
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="delete(questionType.id)"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- /.card-body -->
+</div>
+<!-- /.card -->

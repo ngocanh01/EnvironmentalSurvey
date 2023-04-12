@@ -1,0 +1,25 @@
+<h2>Response Details</h2>
+<div class="col-12">
+  <div class="card">
+    <div class="p-0 card-body table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th style="width: 20px">#</th>
+            <th>Question</th>
+            <th>Answer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="answers != null">
+            <tr *ngFor="let answer of answers; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ answer.question }}</td>
+              <td>{{ answer.answer }}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

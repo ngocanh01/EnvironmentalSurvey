@@ -1,0 +1,123 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <!-- jquery validation -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Add Question Option</h3>
+          </div>
+
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form
+            [formGroup]="addQuestionOptionForm"
+            id="quickForm"
+            (ngSubmit)="save()"
+          >
+            <div class="card-body">
+              <div class="form-group">
+                <label for="question">Question</label>
+                <select
+                  class="form-control"
+                  name="question"
+                  id="question"
+                  formControlName="questionId"
+                >
+                  <option
+                    *ngFor="let question of questions"
+                    value="{{ question.id }}"
+                  >
+                    {{ question.questionText }}
+                  </option>
+                </select>
+              </div>
+              <ng-container
+                *ngIf="addQuestionOptionForm.get('questionId').touched"
+              >
+                <ng-container
+                  *ngIf="
+                    addQuestionOptionForm.hasError('required', ['questionId'])
+                  "
+                >
+                  <span class="text-red">Please fill this filed</span>
+                </ng-container>
+              </ng-container>
+              <div class="form-group" formArrayName="value">
+                <label for="option">Option</label>
+                <ng-container
+                  *ngFor="
+                    let option of addQuestionOptionForm.get('value')[
+                      'controls'
+                    ];
+                    index as i
+                  "
+                >
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="{{ i }}"
+                    />
+                  </div>
+                  <ng-container
+                    *ngIf="
+                      addQuestionOptionForm.get('value')['controls'][i].touched
+                    "
+                  >
+                    <ng-container
+                      *ngIf="
+                        addQuestionOptionForm.get('value')['controls'][i].errors
+                          ?.required
+                      "
+                    >
+                      <div class="text-red">Please fill this filed</div>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+                <!-- <input
+                  type="button"
+                  class="btn btn-primary"
+                  (click)="addOption()"
+                  value="Add Option"
+                /> -->
+                <div class="form-group">
+                  <button
+                    class="btn btn-primary mr-3"
+                    (click)="addOption(); $event.preventDefault()"
+                  >
+                    Add Option
+                  </button>
+                  <button
+                    class="btn btn-danger"
+                    (click)="removeOption(); $event.preventDefault()"
+                  >
+                    Delete Option
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="addQuestionOptionForm.invalid"
+              >
+                Create
+              </button>
+            </div>
+          </form>
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+      <!-- right column -->
+      <div class="col-md-6"></div>
+      <!--/.col (right) -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>

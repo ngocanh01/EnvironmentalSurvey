@@ -1,0 +1,117 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <!-- jquery validation -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Update User</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <ng-container *ngIf="formUpdate != null">
+            <form id="quickForm" [formGroup]="formUpdate" (ngSubmit)="save()" >
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="title">Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    id="title"
+                    placeholder="Enter title"
+                    formControlName="name"
+                  />
+                  <div *ngIf="formUpdate.get('name').touched">
+                    <div *ngIf="formUpdate.hasError('required',['name'])">
+                      <span style="color: red;">This field in requied</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="Enter email"
+                    formControlName="email"
+                  />
+                  <div *ngIf="formUpdate.get('email').touched">
+                    <div *ngIf="formUpdate.hasError('required',['email'])">
+                      <span style="color: red;">This field in requied</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input
+                    type="text"
+                    name="username"
+                    class="form-control"
+                    id="username"
+                    placeholder="Enter username"
+                    formControlName="username"
+                  />
+                  <div *ngIf="formUpdate.get('username').touched">
+                    <div *ngIf="formUpdate.hasError('required',['username'])">
+                      <span style="color: red;">This field in requied</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <!-- <label for="password">Password</label> -->
+                  <input
+                    type="hidden"
+                    name="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Enter password"
+                    formControlName="password"
+                  />
+                  <div *ngIf="formUpdate.get('password').touched">
+                    <div *ngIf="formUpdate.hasError('required',['password'])">
+                      <span style="color: red;">This field in requied</span>
+                    </div>
+                    <div *ngIf="formUpdate.hasError('minlength',['password'])">
+                      <span style="color: red;">password at least 8 symbol</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Status</label>
+                  <div class="d-flex align-items-center">
+                    <div class="icheck-primary d-inline">
+                      <input type="checkbox" id="radioPrimary2" formControlName="status" />
+                      <label for="radioPrimary2">Active</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Role</label>
+                  <select class="form-control" formControlName="role">
+                    <option *ngFor="let role of roles" value="{{role.id}}">{{role.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary" [disabled]="formUpdate.invalid">Update</button>
+              </div>
+            </form>
+          </ng-container>
+          
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+      <!-- right column -->
+      <div class="col-md-6"></div>
+      <!--/.col (right) -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>

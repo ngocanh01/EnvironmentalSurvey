@@ -1,0 +1,59 @@
+<section class="signup">
+  <div class="container">
+    <div class="signup-content">
+      <div class="signup-form">
+        <h2 class="form-title">Edit Profile</h2>
+        <form class="register-form" id="register-form" [formGroup]="editprofileForm" (ngSubmit)="save()">
+          <div class="form-group">
+            <label class="label" for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+            <input type="text" name="name" id="name" placeholder="Your Name" formControlName="name"/>
+            <div *ngIf="editprofileForm.get('name').touched">
+              <div *ngIf="editprofileForm.hasError('required',['name'])">
+                <span style="color: red;">This field in requied</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email"><i class="zmdi zmdi-email label"></i></label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Your Email"
+              formControlName="email"
+            />
+            <div *ngIf="editprofileForm.get('email').touched">
+              <div *ngIf="editprofileForm.hasError('required',['email'])">
+                <span style="color: red;">This field in requied</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="label" for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
+            <input type="text" name="username" id="username" placeholder="Username" formControlName="username" />
+            <div *ngIf="editprofileForm.get('username').touched">
+              <div *ngIf="editprofileForm.hasError('required',['username'])">
+                <span style="color: red;">This field in requied</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group form-button">
+            <input
+              type="submit"
+              name="signup"
+              id="signup"
+              class="btn-info"
+              value="Confirm"
+              [disabled]="editprofileForm.invalid"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="signup-image">
+        <figure>
+          <img src="assets/img/signup-image.jpg" alt="sing up image" />
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>

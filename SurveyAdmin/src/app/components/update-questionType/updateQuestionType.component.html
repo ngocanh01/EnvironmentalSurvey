@@ -1,0 +1,64 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <!-- jquery validation -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Update Question Type</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <ng-container *ngIf="editQuestionTypeForm != null">
+            <form
+              id="quickForm"
+              [formGroup]="editQuestionTypeForm"
+              (ngSubmit)="save()"
+            >
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    placeholder="Enter Name"
+                    formControlName="name"
+                  />
+                  <div *ngIf="editQuestionTypeForm.get('name').touched">
+                    <div
+                      *ngIf="
+                        editQuestionTypeForm.hasError('required', ['name'])
+                      "
+                    >
+                      <span class="text-red">Please fill this filed</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  [disabled]="editQuestionTypeForm.invalid"
+                >
+                  Update
+                </button>
+              </div>
+            </form>
+          </ng-container>
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+      <!-- right column -->
+      <div class="col-md-6"></div>
+      <!--/.col (right) -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>

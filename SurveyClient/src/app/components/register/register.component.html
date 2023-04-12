@@ -1,0 +1,116 @@
+<section class="signup">
+  <div class="container">
+    <div class="signup-content">
+      <div class="signup-form">
+        <h2 class="form-title">Sign up</h2>
+        <form class="register-form" id="register-form" [formGroup]="registerForm" (ngSubmit)="save()">
+          <div class="form-group">
+            <label class="label" for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+            <input type="text" name="name" id="name" placeholder="Your Name" formControlName="name"/>
+            <div *ngIf="registerForm.get('name').touched">
+              <div *ngIf="registerForm.hasError('required',['name'])">
+                <span style="color: red;">This field in requied</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email"><i class="zmdi zmdi-email label"></i></label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Your Email"
+              formControlName="email"
+            />
+            <div *ngIf="registerForm.get('email').touched">
+              <div *ngIf="registerForm.hasError('required',['email'])">
+                <span style="color: red;">This field in requied</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="label" for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
+            <input type="text" name="username" id="username" placeholder="Username" formControlName="username" />
+            <div *ngIf="registerForm.get('username').touched">
+              <div *ngIf="registerForm.hasError('required',['username'])">
+                <span style="color: red;">This field in requied</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pass"><i class="zmdi zmdi-lock label"></i></label>
+            <input
+              type="password"
+              name="pass"
+              id="pass"
+              placeholder="Password"
+              formControlName="password"
+            />
+            <div *ngIf="registerForm.get('password').touched">
+              <div *ngIf="registerForm.hasError('required',['password'])">
+                <span style="color: red;">This field in requied</span>
+              </div>
+              <div *ngIf="registerForm.hasError('minlength',['password'])">
+                <span style="color: red;">password at least 8 symbol</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="re-pass"
+              ><i class="zmdi zmdi-lock-outline label"></i
+            ></label>
+            <input
+              type="password"
+              name="re_pass"
+              id="re_pass"
+              placeholder="Repeat your password"
+              formControlName="confirmpassword"
+            />
+            <div *ngIf="registerForm.get('confirmpassword').touched">
+              <div *ngIf="registerForm.hasError('required',['confirmpassword'])">
+                <span style="color: red;">This field in requied</span>
+              </div>
+              <div *ngIf="registerForm.hasError('minlength',['confirmpassword'])">
+                <span style="color: red;">password at least 8 symbol</span>
+              </div>
+            </div>
+            <div>
+              <span style="color: red;">{{msg}}</span>
+            </div>
+
+          </div>
+          <div class="form-group">
+            <input
+              type="checkbox"
+              name="agree-term"
+              id="agree-term"
+              class="agree-term"
+            />
+            <label for="agree-term" class="label-agree-term label"
+              ><span><span></span></span>I agree all statements in
+              <a href="#" class="term-service">Terms of service</a></label
+            >
+          </div>
+          <div class="form-group form-button">
+            <input
+              type="submit"
+              name="signup"
+              id="signup"
+              class="btn-info"
+              value="Register"
+              [disabled]="registerForm.invalid"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="signup-image">
+        <figure>
+          <img src="assets/img/signup-image.jpg" alt="sing up image" />
+        </figure>
+        <a [routerLink]="['/login']" class="signup-image-link"
+          >I am already member</a
+        >
+      </div>
+    </div>
+  </div>
+</section>
